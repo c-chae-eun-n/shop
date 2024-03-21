@@ -14,6 +14,7 @@ public class Shop {
 	private final int DELETE_ITEM = 2;
 	private final int UPDATE_ITEM = 3;
 	
+	private int log = -1;
 	
 	public Shop(String message) {
 		
