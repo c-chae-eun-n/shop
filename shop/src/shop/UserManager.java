@@ -15,6 +15,31 @@ public class UserManager {
 		return instance;
 	}
 	
+	// create
+	public User createUser(String id, String password) {
+		if(isValidId(id)) {
+			User user = new User(id, password);
+			userList.add(user);
+			return user.clone();
+		}
+		return new User();
+	}
+	
+	private boolean isValidId(String id) {
+		User user = findUserById(id);
+		if(user.getId().equals(""))
+			return true;
+		return false;
+	}
+	
+	public User findUserById(String id) {
+		for(User user : userList) {
+			if(user.getId().equals(id))
+				return user.clone();
+		}
+		return new User();
+	}
+	
 	// Read
 	public User getUser(int index) {
 		User user = userList.get(index);
