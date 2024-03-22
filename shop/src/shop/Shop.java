@@ -16,12 +16,33 @@ public class Shop {
 	private final int DELETE_ITEM = 2;
 	private final int UPDATE_ITEM = 3;
 	
+	private final int TYPE_OUT = 1;
+	private final int TYPE_IN = 2;
+	
 	private Scanner scan = new Scanner(System.in);
 	
 	private int log = -1;
 	
 	public Shop(String message) {
 		
+	}
+	
+	private boolean checkLog(int typeCode) {
+		boolean result = false;
+		
+		if(typeCode == TYPE_OUT) {
+			if(log == -1)
+				result = true;
+			else
+				System.err.println("로그아웃 후 사용 가능합니다.");
+		}else if(typeCode == TYPE_IN) {
+			if(log != -1)
+				result = true;
+			else
+				System.err.println("로그인 후 사용 가능합니다.");
+		}
+		
+		return result;
 	}
 	
 	private void printMainMenu() {
@@ -59,6 +80,7 @@ public class Shop {
 		System.out.println(message + " : ");
 		return scan.next();
 	}
+	
 	
 	public void run() {
 		
