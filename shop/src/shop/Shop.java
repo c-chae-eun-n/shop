@@ -20,7 +20,7 @@ public class Shop {
 		
 	}
 	
-	public void printMainMenu() {
+	private void printMainMenu() {
 		System.out.println("[1] 회원가입");
 		System.out.println("[2] 탈퇴");
 		System.out.println("[3] 로그인");
@@ -30,12 +30,14 @@ public class Shop {
 		System.out.println("[7] 파일");
 	}
 	
-	public void printMyPageMenu() {
+	private void printMyPageMenu() {
 		System.out.println("[1] 내 장바구니");
 		System.out.println("[2] 항목 삭제");
 		System.out.println("[3] 수량 수정");
 		System.out.println("[4] 결제");
 	}
+	
+	
 	
 	public void run() {
 		
