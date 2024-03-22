@@ -43,6 +43,14 @@ public class Item {
 		this.piece = piece;
 	}
 	
+	public int getTotal() {
+		return this.total;
+	}
+	
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
 	public Item clone() {
 		return new Item(this.name, this.price);
 	}
