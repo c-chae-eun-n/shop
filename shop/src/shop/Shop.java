@@ -32,6 +32,8 @@ public class Shop {
 	private UserManager userManager = UserManager.getInstance();
 	private ItemManager itemManager = ItemManager.getInstance();
 	
+	private int sale;
+	
 	private int log = -1;
 	
 	private boolean isExit;
@@ -196,7 +198,7 @@ public class Shop {
 			}
 		}
 		else if(select == VIEW_SALE) {
-//			viewSale();
+			viewSale();
 		}
 	}
 	
@@ -215,7 +217,7 @@ public class Shop {
 		
 		String name = inputString("name");
 		int price = inputNumber("price");
-		if(price < 0) {
+		if(price < 1) {
 			System.err.println("1원 이상부터 등록 가능합니다.");
 			return;
 		}
@@ -256,7 +258,7 @@ public class Shop {
 		}
 		
 		int price = inputNumber("수정할 가격 입력");
-		if(price < 0) {
+		if(price < 1) {
 			System.err.println("1원 이상부터 등록 가능합니다.");
 			return;
 		}
@@ -265,6 +267,10 @@ public class Shop {
 		
 		itemManager.setItem(itemIndex, item);
 		System.out.println("수정 완료");
+	}
+	
+	private void viewSale() {
+		System.out.printf("총 매출 : %d원\n", sale);
 	}
 	
 	private void exit() {
