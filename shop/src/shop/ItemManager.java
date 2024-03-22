@@ -54,4 +54,14 @@ public class ItemManager {
 		Item item = itemList.get(index);
 		return item.clone();
 	}
+	
+	// Delete
+	public void removeItem(int index) {
+		if(index < 0 || index >= itemList.size()) {
+			System.err.println("유효하지 않은 범위입니다.");
+			return;
+		}
+		
+		itemList.remove(index);
+	}
 }
