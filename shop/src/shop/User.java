@@ -1,7 +1,7 @@
 package shop;
 
 public class User {
-	public final String ADMIN = "admin";
+	public static final String ADMIN = "admin";
 	
 	private String id, password;
 	private Cart cart;
@@ -13,6 +13,7 @@ public class User {
 	public User(String id, String password) {
 		this.id = id;
 		this.password = password;
+		cart = new Cart();
 	}
 
 	public String getId() {
