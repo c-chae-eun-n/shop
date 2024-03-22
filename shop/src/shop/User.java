@@ -1,11 +1,10 @@
 package shop;
 
 public class User {
+	public final String ADMIN = "admin";
+	
 	private String id, password;
 	private Cart cart;
-	
-	public final String ADMIN = "admin";
-	public final String MENUS = "24567";
 	
 	public User() {
 		
