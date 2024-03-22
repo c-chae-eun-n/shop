@@ -30,6 +30,7 @@ public class Shop {
 	private Scanner scan = new Scanner(System.in);
 	
 	private UserManager userManager = UserManager.getInstance();
+	private ItemManager itemManager = ItemManager.getInstance();
 	
 	private int log = -1;
 	
@@ -125,7 +126,7 @@ public class Shop {
 //			mypage();
 		}
 		else if(select == MANAGER && checkLog(TYPE_IN)) {
-//			manager();
+			manager();
 		}
 		else if(select == EXIT) {
 			exit();
@@ -162,6 +163,60 @@ public class Shop {
 	private void logout() {
 		log = -1;
 		System.out.println("로그아웃 완료");
+	}
+	
+	private boolean checkManager() {
+		String id = userManager.getUser(log).getId();
+		String target = User.ADMIN;
+		if(!id.equals(target)) {
+			System.err.println("관리자만 이용 가능한 메뉴입니다.");
+			return false;
+		}
+		return true;
+	}
+	
+	private void manager() {
+		if(!checkManager()) {
+			return;
+		}
+		printManagerMenu();
+		int select = inputNumber("메뉴 번호 입력");
+		if(select == ITEM) {
+			printManagerSubMenu();
+			int sel = inputNumber("메뉴 번호 입력");
+			
+			if(sel == ENROLL_ITEM) {
+				enrollItem();
+			}
+			else if(sel == DELETE_ITEM) {
+//				deleteItem();
+			}
+			else if(sel == UPDATE_ITEM) {
+//				updateItem();
+			}
+		}
+		else if(select == VIEW_SALE) {
+//			viewSale();
+		}
+	}
+	
+	private void enrollItem() {
+		System.out.println("[현재 상품 목록]");
+		if(itemManager.getSize() == 0) 
+			System.out.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+		else
+			itemManager.printItemAll();
+		
+		String name = inputString("name");
+		int price = inputNumber("price");
+		
+		Item item = itemManager.createItem(name, price);
+		if(item.getName() == null) {
+			System.err.println("이미 존재하는 상품입니다.");
+			return;
+		}
+		
+		System.out.println("상품 등록 완료");
 	}
 	
 	private void exit() {
