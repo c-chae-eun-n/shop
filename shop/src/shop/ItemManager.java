@@ -55,6 +55,14 @@ public class ItemManager {
 		return item.clone();
 	}
 	
+	// Update
+	public void setItem(int index, Item item) {
+		Item temp = itemList.get(index);
+		
+		if(temp.getName().equals(item.getName()))
+			temp.setPrice(item.getPrice());
+	}
+	
 	// Delete
 	public void removeItem(int index) {
 		if(index < 0 || index >= itemList.size()) {
