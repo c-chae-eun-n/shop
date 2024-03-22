@@ -10,9 +10,16 @@ public class Shop {
 	private final int LOG_OUT = 4;
 	private final int SHOPPING = 5;
 	private final int MY_PAGE = 6;
-	private final int FILE = 7;
+	private final int MANAGER = 7;
 	
 	private final int MY_CART = 1;
+	private final int DELETE_CART = 2;
+	private final int UPDATE_CART = 3;
+	
+	private final int ITEM = 1;
+	private final int VIEW_SALE = 2;
+	
+	private final int ENROLL_ITEM = 1;
 	private final int DELETE_ITEM = 2;
 	private final int UPDATE_ITEM = 3;
 	
@@ -52,7 +59,7 @@ public class Shop {
 		System.out.println("[4] 로그아웃");
 		System.out.println("[5] 쇼핑하기");
 		System.out.println("[6] 마이페이지");
-		System.out.println("[7] 파일");
+		System.out.println("[7] 관리자");
 	}
 	
 	private void printMyPageMenu() {
@@ -80,7 +87,7 @@ public class Shop {
 		System.out.println(message + " : ");
 		return scan.next();
 	}
-	
+
 	
 	public void run() {
 		
