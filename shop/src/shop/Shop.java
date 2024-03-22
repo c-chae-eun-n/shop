@@ -200,12 +200,18 @@ public class Shop {
 		}
 	}
 	
-	private void enrollItem() {
+	private boolean checkItemExist() {
+		if(itemManager.getSize() == 0) {
+			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+			return false;
+		}
 		System.out.println("[현재 상품 목록]");
-		if(itemManager.getSize() == 0) 
-			System.out.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
-		else
-			itemManager.printItemAll();
+		itemManager.printItemAll();
+		return true;
+	}
+	
+	private void enrollItem() {
+		checkItemExist();
 		
 		String name = inputString("name");
 		int price = inputNumber("price");
@@ -224,13 +230,8 @@ public class Shop {
 	}
 	
 	private void deleteItem() {
-		if(itemManager.getSize() == 0) {
-			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+		if(!checkItemExist()) 
 			return;
-		}else {
-			System.out.println("[현재 상품 목록]");
-			itemManager.printItemAll();
-		}
 		
 		String name = inputString("name");
 		int itemIndex = itemManager.findItemIndexByName(name);
@@ -244,13 +245,8 @@ public class Shop {
 	}
 	
 	private void updateItem() {
-		if(itemManager.getSize() == 0) {
-			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+		if(!checkItemExist()) 
 			return;
-		}else {
-			System.out.println("[현재 상품 목록]");
-			itemManager.printItemAll();
-		}
 		
 		String name = inputString("name");
 		int itemIndex = itemManager.findItemIndexByName(name);
