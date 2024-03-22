@@ -48,4 +48,10 @@ public class ItemManager {
 		}
 		return -1;
 	}
+	
+	// Read
+	public Item getItem(int index) {
+		Item item = itemList.get(index);
+		return item.clone();
+	}
 }
