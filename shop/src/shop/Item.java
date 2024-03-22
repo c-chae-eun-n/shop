@@ -17,6 +17,10 @@ public class Item {
 		return this.price;
 	}
 	
+	public Item clone() {
+		return new Item(this.name, this.price);
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%s (%d원)", this.name, this.price);
