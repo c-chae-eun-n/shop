@@ -28,6 +28,8 @@ public class Shop {
 	
 	private Scanner scan = new Scanner(System.in);
 	
+	private UserManager usermanager = UserManager.getInstance();
+	
 	private int log = -1;
 	
 	public Shop(String message) {
@@ -90,7 +92,7 @@ public class Shop {
 	
 	private void runMainMenu(int select) {
 		if(select == JOIN && checkLog(TYPE_OUT)){
-//			join();	
+			join();	
 		}
 		else if(select == LEAVE && checkLog(TYPE_IN)) {
 //			leave();
@@ -110,6 +112,19 @@ public class Shop {
 		else if(select == MANAGER && checkLog(TYPE_IN)) {
 //			manager();
 		}
+	}
+	
+	private void join() {
+		String id = inputString("id");
+		String password = inputString("password");
+		
+		User user = usermanager.createUser(id, password);
+		if(user.getId() == null) {
+			System.err.println("이미 존재하는 아이디입니다.");
+			return;
+		}
+		
+		System.out.println("회원가입 완료");
 	}
 	
 	public void run() {
