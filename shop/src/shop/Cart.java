@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Cart {
 	private ArrayList<Item> cartList;
+	private ItemManager itemManager = ItemManager.getInstance();
 	
 	public Cart() {
 		cartList = new ArrayList<>();
@@ -36,9 +37,31 @@ public class Cart {
 	} 
 	
 	public void printMyCartAll() {
+		if(cartList.size() == 0) {
+			System.out.println("텅-");
+			return;
+		}
+		
 		for(int i=0; i<cartList.size(); i++) {
 			Item item = cartList.get(i);
 			System.out.printf("%d) %s (%d개)\n", i+1, item.getName(), item.getPiece());
 		}
+		int total = calculateTotal();
+		System.out.printf("총 금액 : %d원\n", total);
+	}
+	
+	public int calculateTotal() {
+		int total = 0;
+		
+		for(int i=0; i<cartList.size(); i++) {
+			Item cart = cartList.get(i);
+			for(int j=0; j<itemManager.getSize(); j++) {
+				Item item = itemManager.getItem(j);
+				if(cart.getName().equals(item.getName())) 
+					total += item.getPrice()*cart.getPiece();
+			}
+		}
+		
+		return total;
 	}
 }
