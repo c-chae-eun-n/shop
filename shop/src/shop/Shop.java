@@ -189,7 +189,7 @@ public class Shop {
 				enrollItem();
 			}
 			else if(sel == DELETE_ITEM) {
-//				deleteItem();
+				deleteItem();
 			}
 			else if(sel == UPDATE_ITEM) {
 //				updateItem();
@@ -217,6 +217,26 @@ public class Shop {
 		}
 		
 		System.out.println("상품 등록 완료");
+	}
+	
+	private void deleteItem() {
+		if(itemManager.getSize() == 0) {
+			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+			return;
+		}else {
+			System.out.println("[현재 상품 목록]");
+			itemManager.printItemAll();
+		}
+		
+		String name = inputString("name");
+		int itemIndex = itemManager.findItemIndexByName(name);
+		if(itemIndex == -1) {
+			System.err.println("존재하지 않는 상품입니다.");
+			return;
+		}
+		
+		itemManager.removeItem(itemIndex);
+		System.out.println("상품 삭제 완료");
 	}
 	
 	private void exit() {
