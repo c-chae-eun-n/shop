@@ -36,6 +36,16 @@ public class Cart {
 		return -1;
 	} 
 	
+	// Delete
+	public void removeItem(int index) {
+		if(index < 0 || index >= cartList.size()) {
+			System.err.println("유효하지 않은 범위입니다.");
+			return;
+		}
+		
+		cartList.remove(index);
+	}
+	
 	public void printMyCartAll() {
 		if(cartList.size() == 0) {
 			System.out.println("텅-");
