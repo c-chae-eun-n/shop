@@ -113,7 +113,7 @@ public class Shop {
 //			leave();
 		}
 		else if(select == LOG_IN && checkLog(TYPE_OUT)) {
-//			login();
+			login();
 		}
 		else if(select == LOG_OUT && checkLog(TYPE_IN)) {
 //			logout();
@@ -143,6 +143,20 @@ public class Shop {
 		}
 		
 		System.out.println("회원가입 완료");
+	}
+	
+	private void login() {
+		String id = inputString("id");
+		String password = inputString("password");
+		
+		int userIndex = userManager.findUserIndexById(id);
+		if(userIndex == -1 || !userManager.getUser(userIndex).getPassword().equals(password)) {
+			System.err.println("올바르지 않은 회원정보입니다.");
+			return;
+		}
+		
+		log = userIndex;
+		System.out.printf("%s님 환영합니다.\n", userManager.getUser(userIndex).getId());
 	}
 	
 	private void exit() {
