@@ -64,4 +64,10 @@ public class ItemManager {
 		
 		itemList.remove(index);
 	}
+	
+	public void printItemAll() {
+		for(Item item : itemList) {
+			System.out.println(item);
+		}
+	}
 }
