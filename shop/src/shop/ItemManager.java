@@ -16,9 +16,9 @@ public class ItemManager {
 	}
 	
 	// create
-	public Item createItem(String name, int price, int piece) {
+	public Item createItem(String name, int price) {
 		if(isValidName(name)) {
-			Item item = new Item(name, price, piece);
+			Item item = new Item(name, price);
 			itemList.add(item);
 			return item.clone();
 		}
@@ -60,7 +60,7 @@ public class ItemManager {
 		Item temp = itemList.get(index);
 		
 		if(temp.getName().equals(item.getName()))
-			temp.setPiece(item.getPiece());;
+			temp.setPrice(item.getPrice());
 	}
 	
 	// Delete
