@@ -1,5 +1,7 @@
 package shop;
 
+import java.util.Scanner;
+
 public class Shop {
 	
 	private final int JOIN = 1;
@@ -13,6 +15,8 @@ public class Shop {
 	private final int MY_CART = 1;
 	private final int DELETE_ITEM = 2;
 	private final int UPDATE_ITEM = 3;
+	
+	private Scanner scan = new Scanner(System.in);
 	
 	private int log = -1;
 	
@@ -37,7 +41,24 @@ public class Shop {
 		System.out.println("[4] 결제");
 	}
 	
+	private int inputNumber(String message) {
+		int number = -1;
+		
+		try {
+			System.out.println(message + " : ");
+			String input = scan.next();
+			number = Integer.parseInt(input);
+		} catch (Exception e) {
+			System.err.println("숫자만 입력.");
+		}
+		
+		return number;
+	}
 	
+	private String inputString(String message) {
+		System.out.println(message + " : ");
+		return scan.next();
+	}
 	
 	public void run() {
 		
