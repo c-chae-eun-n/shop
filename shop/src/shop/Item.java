@@ -16,15 +16,12 @@ public class Item {
 		this.price = price;
 	}
 	
-	// Cart
-	public Item(String name, int piece, int total) {
-		this.name = name;
-		this.piece = piece;
-		this.total = total;
-	}
-	
 	public String getName() {
 		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public int getPrice() {
