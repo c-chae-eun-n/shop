@@ -28,7 +28,7 @@ public class UserManager {
 	
 	private boolean isValidId(String id) {
 		User user = findUserById(id);
-		if(user.getId().equals(""))
+		if(user.getId() == null)
 			return true;
 		return false;
 	}
@@ -63,5 +63,12 @@ public class UserManager {
 		}
 		
 		userList.remove(index);
+	}
+	
+	// 검수용
+	public void printUserAll() {
+		for(User user : userList) {
+			System.out.println(user);
+		}
 	}
 }
