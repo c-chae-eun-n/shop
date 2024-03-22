@@ -36,4 +36,11 @@ public class Cart {
 		}
 		return -1;
 	} 
+	
+	public void printMyCartAll() {
+		for(int i=0; i<cartList.size(); i++) {
+			Item item = cartList.get(i);
+			System.out.printf("%d) %s (%d개)\n", i+1, item.getName(), item.getPiece());
+		}
+	}
 }
