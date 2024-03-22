@@ -36,7 +36,7 @@ public class UserManager {
 	public User findUserById(String id) {
 		for(User user : userList) {
 			if(user.getId().equals(id))
-				return user.clone();
+				return user;
 		}
 		return new User();
 	}
@@ -53,7 +53,7 @@ public class UserManager {
 	// Read
 	public User getUser(int index) {
 		User user = userList.get(index);
-		return user.clone();
+		return user;
 	}
 	
 	// Update
