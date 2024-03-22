@@ -209,6 +209,10 @@ public class Shop {
 		
 		String name = inputString("name");
 		int price = inputNumber("price");
+		if(price < 0) {
+			System.err.println("1원 이상부터 등록 가능합니다.");
+			return;
+		}
 		
 		Item item = itemManager.createItem(name, price);
 		if(item.getName() == null) {
