@@ -301,7 +301,7 @@ public class Shop {
 		printMyPageMenu();
 		int select = inputNumber("메뉴 번호 입력");
 		if(select == MY_CART) {
-//			mycart();
+			mycart();
 		}
 		else if(select == DELETE_CART) {
 //			deleteCart();
@@ -312,6 +312,12 @@ public class Shop {
 		else if(select == PAY_CART) {
 //			payCart();
 		}
+	}
+	
+	private void mycart() {
+		User user = userManager.getUser(log);
+		System.out.println(" [내 장바구니]");
+		user.getCart().printMyCartAll();
 	}
 	
 	private void exit() {
