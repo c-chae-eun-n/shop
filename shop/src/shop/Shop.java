@@ -16,6 +16,7 @@ public class Shop {
 	private final int MY_CART = 1;
 	private final int DELETE_CART = 2;
 	private final int UPDATE_CART = 3;
+	private final int PAY_CART = 4;
 	
 	private final int ITEM = 1;
 	private final int VIEW_SALE = 2;
@@ -125,7 +126,7 @@ public class Shop {
 			shopping();
 		}
 		else if(select == MY_PAGE && checkLog(TYPE_IN)) {
-//			mypage();
+			mypage();
 		}
 		else if(select == MANAGER && checkLog(TYPE_IN)) {
 			manager();
@@ -294,6 +295,23 @@ public class Shop {
 		cart.createCart(name, piece);
 
 		System.out.println("쇼핑 완료");
+	}
+
+	private void mypage() {
+		printMyPageMenu();
+		int select = inputNumber("메뉴 번호 입력");
+		if(select == MY_CART) {
+//			mycart();
+		}
+		else if(select == DELETE_CART) {
+//			deleteCart();
+		}
+		else if(select == UPDATE_CART) {
+//			updateCart();
+		}
+		else if(select == PAY_CART) {
+//			payCart();
+		}
 	}
 	
 	private void exit() {
