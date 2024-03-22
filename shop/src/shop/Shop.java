@@ -33,7 +33,7 @@ public class Shop {
 	private int log = -1;
 	
 	public Shop(String message) {
-		
+		System.out.println(message);
 	}
 	
 	private boolean checkLog(int typeCode) {
@@ -69,6 +69,17 @@ public class Shop {
 		System.out.println("[2] 항목 삭제");
 		System.out.println("[3] 수량 수정");
 		System.out.println("[4] 결제");
+	}
+	
+	private void printManagerMenu() {
+		System.out.println("[1] 아이템");
+		System.out.println("[2] 조회(총 매출)");
+	}
+	
+	private void printManagerSubMenu() {
+		System.out.println("[1] 등록");
+		System.out.println("[2] 삭제");
+		System.out.println("[3] 수정");
 	}
 	
 	private int inputNumber(String message) {
