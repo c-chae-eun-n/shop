@@ -12,15 +12,13 @@ public class Cart {
 	// Create
 	public void createCart(String name, int piece) {
 		int index = findItemIndexByName(name);
-		System.out.println(index);
+
 		if(index == -1) {
 			Item item = new Item();
 			item.setName(name);
 			item.setPiece(piece);
 			
-			System.out.println("size : " + cartList.size());
 			cartList.add(item);
-			System.out.println("size : " + cartList.size());
 			return;
 		}
 		int curPiece = cartList.get(index).getPiece();
