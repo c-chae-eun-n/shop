@@ -116,7 +116,7 @@ public class Shop {
 			login();
 		}
 		else if(select == LOG_OUT && checkLog(TYPE_IN)) {
-//			logout();
+			logout();
 		}
 		else if(select == SHOPPING && checkLog(TYPE_IN)) {
 //			shopping();
@@ -157,6 +157,11 @@ public class Shop {
 		
 		log = userIndex;
 		System.out.printf("%s님 환영합니다.\n", userManager.getUser(userIndex).getId());
+	}
+	
+	private void logout() {
+		log = -1;
+		System.out.println("로그아웃 완료");
 	}
 	
 	private void exit() {
