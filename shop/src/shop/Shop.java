@@ -87,7 +87,30 @@ public class Shop {
 		System.out.println(message + " : ");
 		return scan.next();
 	}
-
+	
+	private void runMainMenu(int select) {
+		if(select == JOIN && checkLog(TYPE_OUT)){
+//			join();	
+		}
+		else if(select == LEAVE && checkLog(TYPE_IN)) {
+//			leave();
+		}
+		else if(select == LOG_IN && checkLog(TYPE_OUT)) {
+//			login();
+		}
+		else if(select == LOG_OUT && checkLog(TYPE_IN)) {
+//			logout();
+		}
+		else if(select == SHOPPING && checkLog(TYPE_IN)) {
+//			shopping();
+		}
+		else if(select == MY_PAGE && checkLog(TYPE_IN)) {
+//			mypage();
+		}
+		else if(select == MANAGER && checkLog(TYPE_IN)) {
+//			manager();
+		}
+	}
 	
 	public void run() {
 		
