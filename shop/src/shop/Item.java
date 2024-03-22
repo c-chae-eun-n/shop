@@ -3,14 +3,24 @@ package shop;
 public class Item {
 	private String name;
 	private int price;
+	private int piece;
+	private int total;
 	
 	public Item() {
 		
 	}
 	
+	// ItemManager
 	public Item(String name, int price) {
 		this.name = name;
 		this.price = price;
+	}
+	
+	// Cart
+	public Item(String name, int piece, int total) {
+		this.name = name;
+		this.piece = piece;
+		this.total = total;
 	}
 	
 	public String getName() {
@@ -23,6 +33,14 @@ public class Item {
 	
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public int getPiece() {
+		return this.piece;
+	}
+	
+	public void setPiece(int piece) {
+		this.piece = piece;
 	}
 	
 	public Item clone() {
