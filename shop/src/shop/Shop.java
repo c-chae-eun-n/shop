@@ -20,6 +20,23 @@ public class Shop {
 		
 	}
 	
+	public void printMainMenu() {
+		System.out.println("[1] 회원가입");
+		System.out.println("[2] 탈퇴");
+		System.out.println("[3] 로그인");
+		System.out.println("[4] 로그아웃");
+		System.out.println("[5] 쇼핑하기");
+		System.out.println("[6] 마이페이지");
+		System.out.println("[7] 파일");
+	}
+	
+	public void printMyPageMenu() {
+		System.out.println("[1] 내 장바구니");
+		System.out.println("[2] 항목 삭제");
+		System.out.println("[3] 수량 수정");
+		System.out.println("[4] 결제");
+	}
+	
 	public void run() {
 		
 	}
