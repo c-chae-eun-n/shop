@@ -21,6 +21,10 @@ public class Item {
 		return this.price;
 	}
 	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
 	public Item clone() {
 		return new Item(this.name, this.price);
 	}
