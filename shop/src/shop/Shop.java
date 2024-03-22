@@ -192,7 +192,7 @@ public class Shop {
 				deleteItem();
 			}
 			else if(sel == UPDATE_ITEM) {
-//				updateItem();
+				updateItem();
 			}
 		}
 		else if(select == VIEW_SALE) {
@@ -237,6 +237,34 @@ public class Shop {
 		
 		itemManager.removeItem(itemIndex);
 		System.out.println("상품 삭제 완료");
+	}
+	
+	private void updateItem() {
+		if(itemManager.getSize() == 0) {
+			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+			return;
+		}else {
+			System.out.println("[현재 상품 목록]");
+			itemManager.printItemAll();
+		}
+		
+		String name = inputString("name");
+		int itemIndex = itemManager.findItemIndexByName(name);
+		if(itemIndex == -1) {
+			System.err.println("존재하지 않는 상품입니다.");
+			return;
+		}
+		
+		int price = inputNumber("수정할 가격 입력");
+		if(price < 0) {
+			System.err.println("1원 이상부터 등록 가능합니다.");
+			return;
+		}
+		Item item = itemManager.getItem(itemIndex);
+		item.setPrice(price);
+		
+		itemManager.setItem(itemIndex, item);
+		System.out.println("수정 완료");
 	}
 	
 	private void exit() {
