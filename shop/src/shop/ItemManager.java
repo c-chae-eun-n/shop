@@ -70,4 +70,9 @@ public class ItemManager {
 			System.out.println(item);
 		}
 	}
+	
+	public int getSize() {
+		return itemList.size();
+	}
+	
 }
