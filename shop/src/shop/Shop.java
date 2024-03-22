@@ -11,6 +11,7 @@ public class Shop {
 	private final int SHOPPING = 5;
 	private final int MY_PAGE = 6;
 	private final int MANAGER = 7;
+	private final int EXIT = 0;
 	
 	private final int MY_CART = 1;
 	private final int DELETE_CART = 2;
@@ -28,9 +29,11 @@ public class Shop {
 	
 	private Scanner scan = new Scanner(System.in);
 	
-	private UserManager usermanager = UserManager.getInstance();
+	private UserManager userManager = UserManager.getInstance();
 	
 	private int log = -1;
+	
+	private boolean isExit;
 	
 	public Shop(String message) {
 		System.out.println(message);
@@ -62,6 +65,7 @@ public class Shop {
 		System.out.println("[5] 쇼핑하기");
 		System.out.println("[6] 마이페이지");
 		System.out.println("[7] 관리자");
+		System.out.println("[0] 종료");
 	}
 	
 	private void printMyPageMenu() {
@@ -86,7 +90,7 @@ public class Shop {
 		int number = -1;
 		
 		try {
-			System.out.println(message + " : ");
+			System.out.print(message + " : ");
 			String input = scan.next();
 			number = Integer.parseInt(input);
 		} catch (Exception e) {
@@ -97,7 +101,7 @@ public class Shop {
 	}
 	
 	private String inputString(String message) {
-		System.out.println(message + " : ");
+		System.out.print(message + " : ");
 		return scan.next();
 	}
 	
@@ -123,13 +127,16 @@ public class Shop {
 		else if(select == MANAGER && checkLog(TYPE_IN)) {
 //			manager();
 		}
+		else if(select == EXIT) {
+			exit();
+		}
 	}
 	
 	private void join() {
 		String id = inputString("id");
 		String password = inputString("password");
 		
-		User user = usermanager.createUser(id, password);
+		User user = userManager.createUser(id, password);
 		if(user.getId() == null) {
 			System.err.println("이미 존재하는 아이디입니다.");
 			return;
@@ -138,7 +145,20 @@ public class Shop {
 		System.out.println("회원가입 완료");
 	}
 	
+	private void exit() {
+		isExit = true;
+	}
+	
+	private boolean isRun() {
+		return !isExit;
+	}
+	
 	public void run() {
-		
+		while(isRun()) {
+			userManager.printUserAll();
+			printMainMenu();
+			int select = inputNumber("메뉴 번호 입력");
+			runMainMenu(select);
+		}
 	}
 }
