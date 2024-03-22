@@ -122,7 +122,7 @@ public class Shop {
 			logout();
 		}
 		else if(select == SHOPPING && checkLog(TYPE_IN)) {
-//			shopping();
+			shopping();
 		}
 		else if(select == MY_PAGE && checkLog(TYPE_IN)) {
 //			mypage();
@@ -204,7 +204,7 @@ public class Shop {
 	
 	private boolean checkItemExist() {
 		if(itemManager.getSize() == 0) {
-			System.err.println("등록된 상품이 없습니다.\n상품을 등록해주세요.");
+			System.err.println("등록된 상품이 없습니다.");
 			return false;
 		}
 		System.out.println("[현재 상품 목록]");
@@ -271,6 +271,29 @@ public class Shop {
 	
 	private void viewSale() {
 		System.out.printf("총 매출 : %d원\n", sale);
+	}
+	
+	private void shopping() {
+		if(!checkItemExist()) 
+			return;
+		
+		String name = inputString("구매할 상품 이름 입력");
+		int itemIndex = itemManager.findItemIndexByName(name);
+		if(itemIndex == -1) {
+			System.err.println("존재하지 않는 상품입니다.");
+			return;
+		}
+		
+		int piece = inputNumber("구매할 개수 입력");
+		if(piece < 1) {
+			System.err.println("1개 이상부터 등록 가능합니다.");
+			return;
+		}
+		
+		Cart cart = userManager.getUser(log).getCart();
+		cart.createCart(name, piece);
+
+		System.out.println("쇼핑 완료");
 	}
 	
 	private void exit() {
