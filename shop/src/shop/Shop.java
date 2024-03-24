@@ -307,7 +307,7 @@ public class Shop {
 			deleteCart();
 		}
 		else if(select == UPDATE_CART) {
-//			updateCart();
+			updateCart();
 		}
 		else if(select == PAY_CART) {
 //			payCart();
@@ -328,7 +328,20 @@ public class Shop {
 		user.getCart().removeItem(name);
 		System.out.println("삭제 완료");
 	}
+	
+	private void updateCart() {
+		mycart();
+		String name = inputString("name");
+		int piece = inputNumber("piece");
+		if(piece < 1) {
+			System.err.println("1개 이상부터 등록 가능합니다.");
+			return;
+		}
 
+		User user = userManager.getUser(log);
+		user.getCart().setCart(name, piece);
+		System.out.println("변경 완료");
+	}
 	
 	private void exit() {
 		isExit = true;
