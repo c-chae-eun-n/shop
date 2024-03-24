@@ -355,6 +355,7 @@ public class Shop {
 		}
 		
 		sale += total;
+		user.getCart().removeCartAll();
 		System.out.println("결제 완료");
 	}
 	
