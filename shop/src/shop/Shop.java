@@ -304,7 +304,7 @@ public class Shop {
 			mycart();
 		}
 		else if(select == DELETE_CART) {
-//			deleteCart();
+			deleteCart();
 		}
 		else if(select == UPDATE_CART) {
 //			updateCart();
@@ -319,6 +319,16 @@ public class Shop {
 		System.out.println(" [내 장바구니]");
 		user.getCart().printMyCartAll();
 	}
+	
+	private void deleteCart() {
+		mycart();
+		String name = inputString("name");
+
+		User user = userManager.getUser(log);
+		user.getCart().removeItem(name);
+		System.out.println("삭제 완료");
+	}
+
 	
 	private void exit() {
 		isExit = true;
