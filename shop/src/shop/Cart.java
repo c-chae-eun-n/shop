@@ -48,6 +48,10 @@ public class Cart {
 		cartList.remove(index);
 	}
 	
+	public void removeCartAll() {
+		cartList.clear();
+	}
+	
 	// Update
 	public void setCart(String name, int piece) {
 		int index = findItemIndexByName(name);
