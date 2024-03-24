@@ -48,6 +48,18 @@ public class Cart {
 		cartList.remove(index);
 	}
 	
+	// Update
+	public void setCart(String name, int piece) {
+		int index = findItemIndexByName(name);
+		
+		if(index < 0 || index >= cartList.size()) {
+			System.err.println("존재하지 않는 상품입니다.");
+			return;
+		}
+		
+		cartList.get(index).setPiece(piece);
+	}
+	
 	public void printMyCartAll() {
 		if(cartList.size() == 0) {
 			System.out.println("텅-");
