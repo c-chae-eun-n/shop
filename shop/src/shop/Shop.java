@@ -380,10 +380,69 @@ public class Shop {
 		user.getCart().removeCartAll();
 		System.out.println("결제 완료");
 	}
-
+	
+	private void save() {
+		String data = createDataString();
+		
+		try {
+			fw = new FileWriter(file);
+			fw.write(data);
+			fw.close();
+			
+			System.out.println("파일 저장 완료");
+		} catch (Exception e) {
+			System.err.println("파일 저장 실패");
+		}
+	}
+	
+	private String createDataString() {
+		/*
+		 * 아이템1/아이템2/아이템3/...
+		 * id/pw/아이템1/개수/아이템2/개수/...
+		 * id/pw/아이템1/개수/아이템2/개수/...
+		 * 총 매출
+		 */
+		
+		String data = "";
+		
+		int itemSize = itemManager.getSize();
+		for(int i=0; i<itemSize; i++) {
+			Item item = itemManager.getItem(i);
+			String name = item.getName();
+			int price = item.getPrice();
+			data += name + "/" + price;
+			if(i < itemSize-1)
+				data += "/";
+		}
+		
+		data += "\n";
+		
+		int userSize = userManager.userListSize();
+		for(int i=0; i<userSize; i++) {
+			User user = userManager.getUser(i);
+			String id = user.getId();
+			String pw = user.getPassword();
+			data += id + "/" + pw;
+			
+			Cart cart = user.getCart();
+			if(cart.cartListSize() > 0) {
+				for(int j=0; j<cart.cartListSize(); j++) {
+					data += "/";
+					String item = cart.getCart(j).getName();
+					int piece = cart.getCart(j).getPiece();
+					data += item + "/" + piece;
+				}
+			}
+			if(i < userSize-1)
+				data += "\n";
+		}
+		
+		return data;
+	}
 	
 	private void exit() {
 		isExit = true;
+		save();
 	}
 	
 	private boolean isRun() {
