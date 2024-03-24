@@ -1,5 +1,9 @@
 package shop;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Shop {
@@ -29,6 +33,12 @@ public class Shop {
 	private final int TYPE_IN = 2;
 	
 	private Scanner scan = new Scanner(System.in);
+	
+	private FileWriter fw;
+	private FileReader fr;
+	private BufferedReader br;
+	private String fileName = "shop.txt";
+	private File file = new File(fileName);
 	
 	private UserManager userManager = UserManager.getInstance();
 	private ItemManager itemManager = ItemManager.getInstance();
@@ -370,6 +380,7 @@ public class Shop {
 		user.getCart().removeCartAll();
 		System.out.println("결제 완료");
 	}
+
 	
 	private void exit() {
 		isExit = true;
