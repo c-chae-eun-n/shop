@@ -55,7 +55,7 @@ public class Cart {
 	// Read
 	public Item getCart(int index) {
 		Item item = cartList.get(index);
-		return item.clone();
+		return item;
 	}
 	
 	// Update
