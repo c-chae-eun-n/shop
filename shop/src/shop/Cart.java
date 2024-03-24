@@ -52,6 +52,7 @@ public class Cart {
 		cartList.clear();
 	}
 	
+	// Read
 	public Item getItem(int index) {
 		Item item = cartList.get(index);
 		return item.clone();
