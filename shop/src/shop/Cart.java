@@ -52,6 +52,11 @@ public class Cart {
 		cartList.clear();
 	}
 	
+	public Item getItem(int index) {
+		Item item = cartList.get(index);
+		return item.clone();
+	}
+	
 	// Update
 	public void setCart(String name, int piece) {
 		int index = findItemIndexByName(name);
@@ -91,5 +96,9 @@ public class Cart {
 		}
 		
 		return total;
+	}
+	
+	public int cartListSize() {
+		return cartList.size();
 	}
 }
