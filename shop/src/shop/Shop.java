@@ -310,7 +310,7 @@ public class Shop {
 			updateCart();
 		}
 		else if(select == PAY_CART) {
-//			payCart();
+			payCart();
 		}
 	}
 	
@@ -341,6 +341,21 @@ public class Shop {
 		User user = userManager.getUser(log);
 		user.getCart().setCart(name, piece);
 		System.out.println("변경 완료");
+	}
+	
+	private void payCart() {
+		mycart();
+		
+		int money = inputNumber("지불 금액");
+		User user = userManager.getUser(log);
+		int total = user.getCart().calculateTotal();
+		if(money < total) {
+			System.err.println("금액이 부족합니다.");
+			return;
+		}
+		
+		sale += total;
+		System.out.println("결제 완료");
 	}
 	
 	private void exit() {
