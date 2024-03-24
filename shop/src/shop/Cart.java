@@ -37,9 +37,11 @@ public class Cart {
 	} 
 	
 	// Delete
-	public void removeItem(int index) {
+	public void removeItem(String name) {
+		int index = findItemIndexByName(name);
+		
 		if(index < 0 || index >= cartList.size()) {
-			System.err.println("유효하지 않은 범위입니다.");
+			System.err.println("존재하지 않는 상품입니다.");
 			return;
 		}
 		
