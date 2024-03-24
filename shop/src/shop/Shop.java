@@ -114,7 +114,7 @@ public class Shop {
 			join();	
 		}
 		else if(select == LEAVE && checkLog(TYPE_IN)) {
-//			leave();
+			leave();
 		}
 		else if(select == LOG_IN && checkLog(TYPE_OUT)) {
 			login();
@@ -147,6 +147,18 @@ public class Shop {
 		}
 		
 		System.out.println("회원가입 완료");
+	}
+	
+	private void leave() {
+		String password = inputString("password");
+		if(!userManager.getUser(log).getPassword().equals(password)) {
+			System.err.println("올바르지 않은 회원정보입니다.");
+			return;
+		}
+		
+		userManager.removeUser(log);
+		logout();
+		System.out.println("탈퇴 완료");
 	}
 	
 	private void login() {
