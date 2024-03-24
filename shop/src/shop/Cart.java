@@ -53,7 +53,7 @@ public class Cart {
 	}
 	
 	// Read
-	public Item getItem(int index) {
+	public Item getCart(int index) {
 		Item item = cartList.get(index);
 		return item.clone();
 	}
