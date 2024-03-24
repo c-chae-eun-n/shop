@@ -74,6 +74,10 @@ public class UserManager {
 		userList.remove(index);
 	}
 	
+	public int userListSize() {
+		return userList.size();
+	}
+	
 	// 검수용
 	public void printUserAll() {
 		for(User user : userList) {
