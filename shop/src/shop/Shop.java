@@ -51,6 +51,7 @@ public class Shop {
 	
 	public Shop(String message) {
 		System.out.println(message);
+		load();
 	}
 	
 	private boolean checkLog(int typeCode) {
@@ -397,7 +398,7 @@ public class Shop {
 	
 	private String createDataString() {
 		/*
-		 * 아이템1/아이템2/아이템3/...
+		 * 아이템1/가격/아이템2/가격/아이템3/가격...
 		 * id/pw/아이템1/개수/아이템2/개수/...
 		 * id/pw/아이템1/개수/아이템2/개수/...
 		 * 총 매출
@@ -433,11 +434,59 @@ public class Shop {
 					data += item + "/" + piece;
 				}
 			}
-			if(i < userSize-1)
-				data += "\n";
+			data += "\n";
 		}
 		
+		data += sale;
+		
 		return data;
+	}
+	
+	private void load() {
+		/*
+		 * 아이템1/가격/아이템2/가격/아이템3/가격...
+		 * id/pw/아이템1/개수/아이템2/개수/...
+		 * id/pw/아이템1/개수/아이템2/개수/...
+		 * 총 매출
+		 */
+		if(file.exists()) {
+			try {
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
+				
+				String[] itemList = br.readLine().split("/");
+				for(int i=0; i<itemList.length; i++) {
+					String name = itemList[i++];
+					int price = Integer.parseInt(itemList[i]);
+					itemManager.createItem(name, price);
+				}
+				
+				String data = "";
+				while(br.ready()) {
+					data += br.readLine() + "\n";
+				}
+				
+				String[] temp = data.split("\n");
+				for(int i=0; i<temp.length-1; i++) {
+					String[] info = temp[i].split("/");
+					userManager.createUser(info[0], info[1]);
+					for(int j=2; j<info.length; j++) {
+						String name = info[j++];
+						int piece = Integer.parseInt(info[j]);
+						userManager.getUser(i).getCart().createCart(name, piece);
+					}
+				}
+				
+				sale = Integer.parseInt(temp[temp.length-1]);
+				
+				br.close();
+				fr.close();
+				
+				System.out.println("파일 로드 성공");
+			} catch (Exception e) {
+				System.err.println("파일 로드 실패");
+			}
+		}
 	}
 	
 	private void exit() {
