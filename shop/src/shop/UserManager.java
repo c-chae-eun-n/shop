@@ -65,7 +65,9 @@ public class UserManager {
 	}
 	
 	// Delete
-	public void removeUser(int index) {
+	public void removeUser(String id) {
+		int index = findUserIndexById(id);
+		
 		if(index < 0 || index >= userList.size()) {
 			System.err.println("유효하지 않은 범위입니다.");
 			return;
