@@ -376,10 +376,25 @@ public class Shop {
 			System.err.println("금액이 부족합니다.");
 			return;
 		}
+
+		receipt(money, total);
 		
 		sale += total;
 		user.getCart().removeCartAll();
 		System.out.println("결제 완료");
+	}
+	
+	private void receipt(int money, int total) {
+		System.out.println("---------- 영수증 ----------");
+		User user = userManager.getUser(log);
+		user.getCart().printPieceTotal();
+		System.out.println("--------------------------");
+		System.out.printf("총  금  액  ------- %d원\n", total);
+		System.out.println("--------------------------");
+		System.out.printf("지 불 금 액  ------- %d원\n", money);
+		System.out.println("--------------------------");
+		System.out.printf("거 스 름 돈  ------- %d원\n", money-total);
+		System.out.println("--------------------------");
 	}
 	
 	private void save() {
