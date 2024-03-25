@@ -99,6 +99,20 @@ public class Cart {
 		return total;
 	}
 	
+	public void printPieceTotal() {
+		for(int i=0; i<cartList.size(); i++) {
+			int total = 0;
+			Item cart = cartList.get(i);
+			
+			for(int j=0; j<itemManager.getSize(); j++) {
+				Item item = itemManager.getItem(j);
+				if(cart.getName().equals(item.getName())) 
+					total = item.getPrice()*cart.getPiece();
+			}
+			System.out.printf("%d) %s (%d개) ------- %d원\n",i+1, cart.getName(), cart.getPiece(), total);
+		}
+	}
+	
 	public int cartListSize() {
 		return cartList.size();
 	}
